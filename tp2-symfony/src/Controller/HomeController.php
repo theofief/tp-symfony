@@ -11,16 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function home(): Response
     {
-        return new Response('<nav>
-    <a href="/">Accueil</a> |
-    <a href="/hello/user">Hello</a> |
-    <a href="/about">À propos</a> |
-    <a href="/random">Citation</a>
-</nav>
-<hr>
-<h1>Bienvenue sur mon application Symfony 🚀</h1>');
+        return $this->render('home/home.html.twig');
     }
 
     #[Route('/about', name: 'about')]

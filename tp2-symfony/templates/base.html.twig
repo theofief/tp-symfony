@@ -13,12 +13,16 @@
     </head>
     <body>
         <nav>
-            <a href="/">Accueil</a> |
-            <a href="/hello/user">Hello</a> |
-            <a href="/about">À propos</a> |
-            <a href="/random">Citation</a>
+            <ul>
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+
+                <li><a href="{{ path('hello', {'name': 'user'}) }}">Hello</a></li>
+
+                <li><a href="{{ path('about') }}">À propos</a></li>
+
+                <li><a href="{{ path('random') }}">Citation</a></li>
+            </ul>
         </nav>
-        <hr>
         {% block body %}{% endblock %}
     </body>
 </html>
