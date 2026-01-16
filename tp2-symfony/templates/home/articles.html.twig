@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% import 'macros/_card.html.twig' as cards %}
+
+{% block main %}
+    <h1>Liste des articles</h1>
+
+    <p>Total d'articles : {{ articles|length }}</p>
+
+    {% for article in articles %}
+        {{ cards.article_card(article) }}
+    {% else %}
+        <p>Aucun article disponible.</p>
+    {% endfor %}
+{% endblock %}

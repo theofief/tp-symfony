@@ -1,28 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        {% block title %}Welcome!{% endblock %}
+    </title>
+
+    {# Favicon Symfony par défaut #}
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+
+    {# ===== Bootstrap 5 (CDN recommandé) ===== #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    {# Styles globaux / spécifiques #}
+    {% block stylesheets %}{% endblock %}
+
+    {# JS via ImportMap (Symfony 6+) #}
+    {% block javascripts %}
+        {% block importmap %}
+            {{ importmap('app') }}
         {% endblock %}
+    {% endblock %}
+</head>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+<body class="bg-light">
+
+    {# ===== MENU ===== #}
+    <header class="mb-4">
+        {% block menu %}
+            {% include 'partials/_menu.html.twig' %}
         {% endblock %}
-    </head>
-    <body>
-        <nav>
-            <ul>
-                <li><a href="{{ path('home') }}">Accueil</a></li>
+    </header>
 
-                <li><a href="{{ path('hello', {'name': 'user'}) }}">Hello</a></li>
+    {# ===== CONTENU PRINCIPAL ===== #}
+    <main class="container mb-5">
+        {% block main %}
+            {% block body %}
+            {# Contenu spécifique à chaque page #}
+            {% endblock %}
+        {% endblock %}
+    </main>
 
-                <li><a href="{{ path('about') }}">À propos</a></li>
+    {# ===== FOOTER ===== #}
+    {% import 'macros/site_macros.html.twig' as site %}
+    {{ site.footer('MonSiteSymfony') }}
 
-                <li><a href="{{ path('random') }}">Citation</a></li>
-            </ul>
-        </nav>
-        {% block body %}{% endblock %}
-    </body>
+    {# Bootstrap JS (optionnel mais recommandé) #}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>

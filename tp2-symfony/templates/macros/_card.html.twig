@@ -1,0 +1,21 @@
+{% macro article_card(article) %}
+    <div class="card" style="border:1px solid #ccc; padding:1em; margin-bottom:1em;">
+        <h2>
+            {{ article.title|upper }}
+            {% if article.popular %}
+                ⭐ Populaire
+            {% endif %}
+        </h2>
+
+        <p>{{ article.content|capitalize }}</p>
+
+        <p>
+            Auteur : {{ article.author|lower }} <br>
+            Publié le : {{ article.date|date('d/m/Y') }}
+        </p>
+
+        <p>
+            Extrait : {{ (article.title ~ ' - ' ~ article.content)|slice(0, 30) ~ '...' }}
+        </p>
+    </div>
+{% endmacro %}

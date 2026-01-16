@@ -2,7 +2,10 @@
 
 {% block title %}À propos{% endblock %}
 
-{% block body %}
-<h1>À propos</h1>
-<p>Bienvenue sur mon application Symfony 👋</p>
+{% block main %}
+    {# Utilisation de la fonction greet #}
+    <p>{{ greet('Théo') }}</p>
+
+    {# Utilisation du filtre truncate #}
+    <p>{{ "Symfony est un framework PHP très puissant pour créer des applications web"|truncate(30) }}</p>
 {% endblock %}

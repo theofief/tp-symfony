@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% import 'macros/_form.html.twig' as forms %}
+
+{% block main %}
+    <h1>Contact</h1>
+
+    {{ forms.contact_form() }}
+
+    {# Exemple d’utilisation de la fonction Twig #}
+    <p>{{ confirmation_message('Théo') }}</p>
+{% endblock %}
+
+{% block footer %}
+    <p>© {{ site_name }} {{ "now"|date("Y") }}</p>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un produit{% endblock %}
+
+{% block main %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+        <h1 class="mb-4 text-center">Ajouter un produit</h1>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+            {{ form_row(form.name) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.price) }}
+            {{ form_row(form.brand) }}
+            {{ form_row(form.createdAt) }}
+
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Envoyer
+                </button>
+            </div>
+
+        {{ form_end(form) }}
+
+    </div>
+</div>
+{% endblock %}
