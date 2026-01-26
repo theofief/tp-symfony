@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductType extends AbstractType
@@ -41,11 +41,10 @@ class ProductType extends AbstractType
                     'placeholder' => 'Ex : Nike',
                 ],
             ])
-            ->add('createdAt', DateType::class, [
+            ->add('createdAt', DateTimeType::class, [
                 'label' => 'Date de création',
                 'widget' => 'single_text',
-                'html5' => false,
-                'required' => true,
+                'required' => false,
             ]);
     }
 

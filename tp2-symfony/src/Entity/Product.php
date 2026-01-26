@@ -2,10 +2,18 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\Entity]
 class Product
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 100, nullable: false)]
     #[Assert\NotBlank(message: "Le nom est obligatoire")]
     #[Assert\Length(
         min: 3,
@@ -15,6 +23,7 @@ class Product
     )]
     private ?string $name = null;
 
+    #[ORM\Column(length: 500, nullable: false)]
     #[Assert\NotBlank(message: "La description est obligatoire")]
     #[Assert\Length(
         min: 10,
@@ -24,20 +33,28 @@ class Product
     )]
     private ?string $description = null;
 
+    #[ORM\Column(type: 'float', nullable: false)]
     #[Assert\NotNull(message: "Le prix est obligatoire")]
     #[Assert\Positive(message: "Le prix doit être un nombre positif")]
     private ?float $price = null;
 
+    #[ORM\Column(length: 100, nullable: false)]
     #[Assert\NotBlank(message: "La marque est obligatoire")]
     private ?string $brand = null;
 
+    #[ORM\Column(type: 'datetime', nullable: false)]
     #[Assert\NotNull(message: "La date de création est obligatoire")]
-    #[Assert\Type(\DateTimeInterface::class, message: "La date n'est pas valide")]
+    #[Assert\Type(\DateTimeInterface::class, message: "La date ndzsq'est pas valide")]
     private ?\DateTimeInterface $createdAt = null;
 
     // --------------------
     // GETTERS / SETTERS
     // --------------------
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getName(): ?string
     {
@@ -88,7 +105,7 @@ class Product
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
         return $this;
